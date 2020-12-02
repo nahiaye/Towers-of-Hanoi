@@ -1,0 +1,55 @@
+﻿@page "/counter"
+
+<h1>Towers Of Hanoi</h1>
+
+ <svg height = "500" width = "1000"> 
+    
+    <g id = "l1" fill ="@l1.color" @onclick="() => TowerClick(l1)">
+      <rect x="100" y="200" width="30" height="300"/>
+      <rect x="30" y="470" width="180" height="30"/>
+    </g>
+
+<g id = "l2" fill ="@l2.color" @onclick="() => TowerClick(l2)">
+    <rect x="400" y="200" width="30" height="300"/>
+    <rect x="330" y="470" width="180" height="30"/>
+</g>
+
+<g id = "l3" fill ="@l3.color" @onclick="() => TowerClick(l3)">
+    <rect x="700" y="200" width="30" height="300"/>
+    <rect x="630" y="470" width="180" height="30"/>
+</g>
+
+ </svg>
+
+<p>Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+  private int currentCount = 0;
+
+List<Data.Rectangle> lines = new List<Data.Rectangle>();
+  public Data.Rectangle l1 = new Data.Rectangle(1,"black");
+  public Data.Rectangle l2 = new Data.Rectangle(2,"black");
+  public Data.Rectangle l3 = new Data.Rectangle(3,"black");
+public void listCreate(){
+  lines.Add(l1);
+  lines.Add(l2);
+  lines.Add(l3);
+}
+  private void TowerClick(Data.Rectangle obj){
+        if (obj.color == "black")
+        {
+          obj.color = "blue";
+        }
+        else
+        obj.color = "black";
+    }
+  public Counter(){
+    listCreate();
+  }
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+}
